@@ -1,0 +1,26 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/bootstrap";
+
+
+img {
+    max-width: 100%;
+
+    height: auto;
+}
+*, *::before,* ::after{
+
+    box-sizing: border-box;
+
+}
+.banner {
+    position: relative;
+    z-index: -1;
+    margin: -5px;
+    height: 360px;
+    background: #dddddd center center url('https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg');
+    background-size: cover;
+    filter: blur(3px);
+  }
+.index {
+  text-align:center
+}
