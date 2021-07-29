@@ -21,11 +21,11 @@
         </div>
         <div class="card-footer d-flex">
           <button type="button" class="btn btn-outline-secondary btn-sm" @click="getProduct(item.id)">
-            <i class="fas fa-spinner fa-spin"></i>
+            <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
             查看更多
           </button>
           <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addToCart(item.id)">
-            <i class="fas fa-spinner fa-spin"></i>
+            <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
             加到購物車
           </button>
         </div>
@@ -64,7 +64,7 @@
               小計 <strong>{{ product.num * product.price }}</strong> 元
             </div>
             <button type="button" class="btn btn-primary" @click="addToCart(product.id, product.num)">
-              <i class="fas fa-spinner fa-spin"></i>
+              <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === product.id"></i>
               加到購物車
             </button>
           </div>
@@ -83,7 +83,10 @@ export default {
       products: [],
       product: {},
       isLoading: false,
-      productModal: ''
+      productModal: '',
+      status: {
+        loadingItem: ''
+      }
     }
   },
   methods: {
@@ -100,11 +103,11 @@ export default {
     getProduct (id) {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
-      // vm.status.loadingItem = id
+      vm.status.loadingItem = id
       this.$http.get(url).then((response) => {
         vm.product = response.data.product
         console.log(response.data)
-        // vm.status.loadingItem = ''
+        vm.status.loadingItem = ''
         vm.productModal = new Modal(document.getElementById('productModal'))
         vm.productModal.show()
       })
@@ -112,33 +115,22 @@ export default {
     addToCart (id, qty = 1) {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      // vm.status.loadingItem = id
+      vm.status.loadingItem = id
       const cart = {
         product_id: id,
         qty
       }
       this.$http.post(url, { data: cart }).then((response) => {
         console.log(response.data)
-        // vm.status.loadingItem = ''
-        vm.getCart()
+        vm.status.loadingItem = ''
+        this.$store.dispatch('getCart')
         vm.productModal.hide()
-      })
-    },
-    getCart () {
-      const vm = this
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      vm.isLoading = true
-      this.$http.get(url).then((response) => {
-        // vm.cart = response.data.data
-        this.$store.commit('setCart', response.data.data)
-        console.log(response.data.data)
-        vm.isLoading = false
       })
     }
   },
   created () {
     this.getProducts()
-    this.getCart()
+    this.$store.dispatch('getCart')
   }
 }
 </script>

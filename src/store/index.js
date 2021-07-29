@@ -10,7 +10,7 @@ export default createStore({
       state.cart = getcart
     }
   },
-  action: {
+  actions: {
     getCart (context) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       axios.get(url).then((response) => {
