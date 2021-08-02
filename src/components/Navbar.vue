@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-light bg-light flex-nowrap">
     <div class="container-fluid d-inline">
-      <a class="navbar-brand" href="#">小林賣包</a>
+      <a class="navbar-brand" href="#">小林潛水</a>
     </div>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle " data-bs-display="static" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -31,7 +31,9 @@
             </tr>
           </tbody>
         </table>
-        <button type="submit" class="btn btn-primary">結帳去</button>
+        <router-link class="btn btn-primary" to="/checkout">
+          結帳去
+        </router-link>
       </form>
     </div>
   </nav>

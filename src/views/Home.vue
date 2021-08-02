@@ -1,20 +1,20 @@
 <template>
   <div class="home">
     <Navbar/>
-    <div class="banner"></div>
+    <div class="banner">
+      <div class="banner-text">
+        <h1>想悠游在美麗的大海嗎</h1>
+        <p>歡迎加入小林潛水</p>
+        <button>立即加入</button>
+      </div>
+    </div>
   </div>
   <div class="container mt-5">
     <h2 class="index">
       您所想像的到的包包，都在小林賣包
     </h2>
     <div class="row">
-      <ul class="list-group col-3">
-        <li class="list-group-item">全部種類</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-      </ul>
+      <Sidebar/>
       <div class="main col-9">
         <form>
           <div class="d-flex mb-3">
@@ -31,10 +31,12 @@
 <script>
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
+import Sidebar from '@/components/Sidebar.vue'
 export default {
   name: 'Home',
   components: {
-    Navbar
+    Navbar,
+    Sidebar
   }
 }
 </script>
