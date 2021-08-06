@@ -1,9 +1,15 @@
 <template>
   <nav class="navbar navbar-light bg-light flex-nowrap">
-    <div class="container-fluid d-inline">
+    <div class="d-inline">
       <a class="navbar-brand" href="#">小林潛水</a>
     </div>
-    <div class="dropdown">
+    <div class="d-flex align-items-center">
+      <div class="mx-3">
+        <i class="fas fa-sign-in-alt"></i>
+        <a href="">員工登入</a>
+      </div>
+      <!-- cart -->
+      <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle " data-bs-display="static" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         購物車
         <i class="fas fa-cart-arrow-down"></i>
@@ -15,7 +21,6 @@
               <th scope="col">項目</th>
               <th scope="col">數量</th>
               <th scope="col">價錢</th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -35,6 +40,7 @@
           結帳去
         </router-link>
       </form>
+    </div>
     </div>
   </nav>
 </template>
@@ -60,6 +66,9 @@ export default {
         this.$store.dispatch('getCart')
       })
     }
+  },
+  created () {
+    this.$store.dispatch('getCart')
   }
 }
 </script>

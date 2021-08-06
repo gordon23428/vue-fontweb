@@ -8,22 +8,40 @@ const routes = [
     component: Home,
     children: [
       {
-        path: '',
+        path: 'products',
         name: 'Products',
         component: () => import('../components/Products.vue')
+      },
+      {
+        path: '',
+        name: 'Introduce',
+        component: () => import('../components/Introduce.vue')
       }
     ]
   },
   {
     path: '/checkout',
     name: 'Checkout',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Checkout.vue')
+    component: () => import('../views/Checkout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'CostomInfo',
+        component: () => import('../components/order-page/CostomInfo.vue')
+      },
+      {
+        path: 'custom_checkout/:orderId',
+        name: 'CustomCheckout',
+        component: () => import('../components/order-page/CustomCheckout.vue')
+      },
+      {
+        path: 'finish/:orderId',
+        name: 'Finish',
+        component: () => import('../components/order-page/Finish.vue')
+      }
+    ]
   }
 ]
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes

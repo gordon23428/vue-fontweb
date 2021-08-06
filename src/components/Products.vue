@@ -1,5 +1,7 @@
 <template>
-  <div class="row mt-4">
+  <div class="container mx-auto row mt-5">
+    <Sidebar/>
+    <div class="row col-9 mt-4">
     <loading v-model:active="isLoading"/>
     <!-- product card -->
     <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
@@ -55,7 +57,7 @@
             </div>
             <select name="" class="form-control mt-3" v-model="product.num">
               <option :value="num" v-for="num in 10" :key="num">
-                選購 {{num}} {{product.unit}}
+                報名 {{num}} {{product.unit}}
               </option>
             </select>
           </div>
@@ -72,12 +74,16 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
-// import $ from 'jquery'
 import { Modal } from 'bootstrap'
+import Sidebar from './Sidebar.vue'
 export default {
+  components: {
+    Sidebar
+  },
   data () {
     return {
       products: [],
