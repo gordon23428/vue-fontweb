@@ -142,6 +142,30 @@
         </div>
       </div>
     </div>
+    <!-- deleteModal -->
+    <div class="modal fade" id="delProductModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <span>刪除產品</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            是否刪除 <strong class="text-danger">{{ tempProduct.title }}</strong> 商品(刪除後將無法恢復)。
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" @click="deleteModal(false)">取消</button>
+            <button type="button" class="btn btn-danger"
+              @click="deleteProduct()">確認刪除</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -153,7 +177,9 @@ export default {
       products: [],
       isLoading: false,
       productModal: '',
+      delModal: '',
       tempProduct: {},
+      delId: '',
       isNew: false
     }
   },
@@ -169,7 +195,6 @@ export default {
       })
     },
     openModal (isNew, item) {
-      this.productModal = new Modal(document.getElementById('productModal'))
       this.productModal.show()
       if (isNew) {
         this.tempProduct = {}
@@ -198,10 +223,31 @@ export default {
           console.log('新增失敗')
         }
       })
+    },
+    deleteModal (mod, item) {
+      if (mod) {
+        this.delModal.show()
+        this.delId = item.id
+      } else {
+        this.delModal.hide()
+      }
+    },
+    deleteProduct () {
+      const vm = this
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/product/${vm.delId}`
+      this.$http.delete(api).then((response) => {
+        console.log(response.data)
+        this.delModal.hide()
+        vm.getProducts()
+      })
     }
   },
   created () {
     this.getProducts()
+  },
+  mounted () {
+    this.delModal = new Modal(document.getElementById('delProductModal'))
+    this.productModal = new Modal(document.getElementById('productModal'))
   }
 }
 </script>
