@@ -17,7 +17,12 @@ const routes = [
         name: 'StaffProducts',
         component: () => import('../components/staff/StaffProducts.vue'),
         meta: { requiresAuth: true }
-
+      },
+      {
+        path: 'staffcoupon',
+        name: 'StaffCoupon',
+        component: () => import('../components/staff/StaffCoupon.vue'),
+        meta: { requiresAuth: true }
       }
     ]
   },
