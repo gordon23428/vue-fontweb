@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group">
                   <label for="customFile">或 上傳圖片
-                    <i class="fas fa-spinner fa-spin" ></i>
+                    <i class="fas fa-spinner fa-spin" v-if="status.fileUploading"></i>
                   </label>
                   <input type="file" id="customFile" class="form-control"
                     ref="files" @change="uploadFile">
@@ -180,7 +180,10 @@ export default {
       delModal: '',
       tempProduct: {},
       delId: '',
-      isNew: false
+      isNew: false,
+      status: {
+        fileUploading: false
+      }
     }
   },
   methods: {
@@ -239,6 +242,28 @@ export default {
         console.log(response.data)
         this.delModal.hide()
         vm.getProducts()
+      })
+    },
+    uploadFile () {
+      console.log(this)
+      const uploadedFile = this.$refs.files.files[0]
+      const vm = this
+      const formData = new FormData()
+      formData.append('file-to-upload', uploadedFile)
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/upload`
+      vm.status.fileUploading = true
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        console.log(response.data)
+        if (response.data.success) {
+          vm.status.fileUploading = false
+          vm.tempProduct.imageUrl = response.data.imageUrl
+        } else {
+          console.log('error')
+        }
       })
     }
   },
