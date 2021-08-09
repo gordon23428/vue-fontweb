@@ -1,12 +1,14 @@
 <template>
   <nav class="navbar navbar-light bg-light flex-nowrap">
     <div class="d-inline">
-      <a class="navbar-brand" href="#">小林潛水</a>
+      <a class="navbar-brand" href="/login">小林潛水</a>
     </div>
     <div class="d-flex align-items-center">
       <div class="mx-3">
         <i class="fas fa-sign-in-alt"></i>
-        <a href="">員工登入</a>
+        <router-link class="" to="/login">
+          員工登入
+        </router-link>
       </div>
       <!-- cart -->
       <div class="dropdown">

@@ -3,6 +3,25 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/admin',
+    name: 'StaffPage',
+    component: () => import('../views/StaffPage.vue'),
+    children: [
+      {
+        path: 'staffproducts',
+        name: 'StaffProducts',
+        component: () => import('../components/staff/StaffProducts.vue'),
+        meta: { requiresAuth: true }
+
+      }
+    ]
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
