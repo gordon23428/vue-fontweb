@@ -23,6 +23,12 @@ const routes = [
         name: 'StaffCoupon',
         component: () => import('../components/staff/StaffCoupon.vue'),
         meta: { requiresAuth: true }
+      },
+      {
+        path: 'stafforder',
+        name: 'StaffOrder',
+        component: () => import('../components/staff/StaffOrder.vue'),
+        meta: { requiresAuth: true }
       }
     ]
   },

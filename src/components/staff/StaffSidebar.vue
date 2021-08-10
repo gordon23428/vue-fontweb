@@ -14,7 +14,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="">
+            <router-link class="nav-link" to="/admin/stafforder">
               訂單列表
             </router-link>
           </li>
