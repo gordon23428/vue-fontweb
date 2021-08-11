@@ -1,10 +1,25 @@
 <template>
   <div class="container mx-auto row mt-5">
-    <Sidebar/>
-    <div class="row col-9 mt-4">
     <loading v-model:active="isLoading"/>
+    <div class="col-3">
+      <ul class="list-group">
+          <li class="list list-group-item text-center" @click="getAll">
+            <a href="" class="text-decoration-none text-align-center">全部種類</a>
+          </li>
+          <li class="list list-group-item text-center" @click="getTravel">
+            <a href="" class="text-decoration-none">潛水旅遊</a>
+          </li>
+          <li class="list list-group-item text-center" @click="getTest">
+            <a href="" class="text-decoration-none">潛水考照</a>
+          </li>
+          <li class="list list-group-item text-center" @click="getNovice">
+            <a href="" class="text-decoration-none">體驗潛水</a>
+          </li>
+        </ul>
+    </div>
+    <div class="row col-9 mt-4">
     <!-- product card -->
-    <div class="col-md-4 mb-4" v-for="item in products" :key="item.id">
+    <div class="col-md-4 mb-4" v-for="item in filterList" :key="item.id">
       <div class="card border-0 shadow-sm">
         <div style="height: 150px; background-size: cover; background-position: center"
           :style="{backgroundImage: `url(${item.imageUrl})`}">
@@ -79,14 +94,15 @@
 
 <script>
 import { Modal } from 'bootstrap'
-import Sidebar from './Sidebar.vue'
+// import Sidebar from './Sidebar.vue'
 export default {
-  components: {
-    Sidebar
-  },
+  // components: {
+  //   Sidebar
+  // },
   data () {
     return {
       products: [],
+      filterList: [],
       product: {},
       isLoading: false,
       productModal: '',
@@ -102,6 +118,7 @@ export default {
       vm.isLoading = true
       this.$http.get(api).then((response) => {
         vm.products = response.data.products
+        vm.filterList = response.data.products
         vm.isLoading = false
         // vm.pagination = response.data.pagination
       })
@@ -132,6 +149,28 @@ export default {
         this.$store.dispatch('getCart')
         vm.productModal.hide()
       })
+    },
+    getTravel () {
+      const vm = this
+      const filter = vm.products.filter(item => item.category === 'travel')
+      console.log(filter)
+      vm.filterList = filter
+    },
+    getNovice () {
+      const vm = this
+      const filter = vm.products.filter(item => item.category === 'novice')
+      console.log(filter)
+      vm.filterList = filter
+    },
+    getTest () {
+      const vm = this
+      const filter = vm.products.filter(item => item.category === 'license-test')
+      console.log(filter)
+      vm.filterList = filter
+    },
+    getAll () {
+      const vm = this
+      vm.filterList = vm.products
     }
   },
   created () {
