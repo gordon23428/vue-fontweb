@@ -12,9 +12,10 @@
       </div>
       <!-- cart -->
       <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle " data-bs-display="static" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+      <button class="btn btn-secondary dropdown-toggle" data-bs-display="static" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
         購物車
         <i class="fas fa-cart-arrow-down"></i>
+        <span class="badge bg-danger">{{leng}}</span>
       </button>
       <form class="dropdown-menu p-4 dropdown-menu-end">
         <table class="table mb-3">
@@ -49,19 +50,17 @@
 
 <script>
 export default {
-  data () {
-    return {
-      cart: {}
-    }
-  },
   computed: {
     getCart () {
       return this.$store.state.cart
+    },
+    leng () {
+      return this.$store.state.leng
     }
   },
   methods: {
     removeCartItem (id) {
-      // const vm = this
+      console.log(this.len)
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       this.$http.delete(url).then((response) => {
         console.log(response.data)

@@ -1,19 +1,20 @@
 <template>
   <div class="container mx-auto row mt-5">
     <loading v-model:active="isLoading"/>
+    <!-- sidebar -->
     <div class="col-3">
-      <ul class="list-group">
+      <ul class="sidebar list-group">
           <li class="list list-group-item text-center" @click="getAll">
-            <a href="" class="text-decoration-none text-align-center">全部種類</a>
+            <div class="text-decoration-none text-align-center">全部種類</div>
           </li>
           <li class="list list-group-item text-center" @click="getTravel">
-            <a href="" class="text-decoration-none">潛水旅遊</a>
+            <div class="text-decoration-none">潛水旅遊</div>
           </li>
           <li class="list list-group-item text-center" @click="getTest">
-            <a href="" class="text-decoration-none">潛水考照</a>
+            <div class="text-decoration-none">潛水考照</div>
           </li>
           <li class="list list-group-item text-center" @click="getNovice">
-            <a href="" class="text-decoration-none">體驗潛水</a>
+            <div class="text-decoration-none">體驗潛水</div>
           </li>
         </ul>
     </div>
