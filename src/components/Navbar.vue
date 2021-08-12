@@ -60,7 +60,6 @@ export default {
   },
   methods: {
     removeCartItem (id) {
-      console.log(this.len)
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
       this.$http.delete(url).then((response) => {
         console.log(response.data)

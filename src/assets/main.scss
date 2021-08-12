@@ -3,44 +3,9 @@
   position:relative; 
   overflow: hidden;
 }
-.slider,.slider-item {
-  min-height: 500px;
-  padding-left:0;
-}
-.slider-item { 
-  width:100%; 
-  position:absolute; 
-  background-size:cover;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  animation: circle 20s linear infinite;
-}
-.slider-item1 {
-  background-image: url('~@/assets/diving.jpg');
-  animation-delay: 0s;
-}
-.slider-item2 {
-  background-image: url('~@/assets/diving2.jpg');
-  animation-delay: 10s;
-}
-@keyframes circle {
-  5%{
-    opacity: 1;
-    filter: alpha(opacity=100);
-  }
-  45%{
-    opacity: 1;
-    filter: alpha(opacity=100);
-  }
-  50%{
-    opacity: 0;
-    filter: alpha(opacity=0);
-  }
-}
-.slider-item:hover {
-  animation-play-state: paused;
+.carousel-item {
+  max-height: 500px;
+  overflow: hidden;
 }
 .introduce {
   position: absolute;
@@ -56,4 +21,7 @@
   position: -webkit-sticky;
   top: 10px;
   left: 0;
+}
+.carousel-item, img {
+  opacity: 0.9;
 }
