@@ -4,7 +4,8 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     cart: [],
-    leng: ''
+    leng: '',
+    orderMod: 1
   },
   mutations: {
     setCart (state, getcart) {
@@ -12,6 +13,9 @@ export default createStore({
     },
     setLeng (state, leng) {
       state.leng = leng
+    },
+    setMod (state, mod) {
+      state.orderMod = mod
     }
   },
   actions: {

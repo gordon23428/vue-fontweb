@@ -83,6 +83,7 @@ export default {
       vm.isLoading = true
       this.$http.post(url).then((response) => {
         if (response.data.success) {
+          this.$store.commit('setMod', 3)
           vm.$router.push(`/checkout/finish/${vm.orderId}`)
         }
         console.log(response)

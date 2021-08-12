@@ -78,6 +78,7 @@ export default {
       this.$http.post(url, { data: order }).then((response) => {
         console.log('訂單建立', response.data)
         if (response.data.success) {
+          this.$store.commit('setMod', 2)
           vm.$router.push(`/checkout/custom_checkout/${response.data.orderId}`)
         }
         vm.isLoading = false
