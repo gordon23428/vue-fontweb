@@ -166,12 +166,17 @@
         </div>
       </div>
     </div>
+    <Pagination :pagination="pagination" @getPage="getProducts"></Pagination>
   </div>
 </template>
 
 <script>
 import { Modal } from 'bootstrap'
+import Pagination from '@/components/Pagination.vue'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       products: [],
@@ -179,6 +184,7 @@ export default {
       productModal: '',
       delModal: '',
       tempProduct: {},
+      pagination: {},
       delId: '',
       isNew: false,
       status: {
@@ -194,7 +200,7 @@ export default {
       this.$http.get(api).then((response) => {
         vm.products = response.data.products
         vm.isLoading = false
-        // vm.pagination = response.data.pagination
+        vm.pagination = response.data.pagination
       })
     },
     openModal (isNew, item) {

@@ -105,18 +105,24 @@
         </div>
       </div>
     </div>
+    <Pagination :pagination='pagination' @getPage='getCoupons'></Pagination>
   </div>
 </template>
 
 <script>
 import { Modal } from 'bootstrap'
+import Pagination from '@/components/Pagination.vue'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       isLoading: false,
       tempCoupon: {},
       coupons: [],
       due_date: new Date(),
+      pagination: {},
       isNew: false,
       delId: '',
       couponModal: '',
@@ -155,6 +161,7 @@ export default {
         response.data.coupons.forEach(item => {
           item.due_date = vm.unix('date', item.due_date)
           vm.coupons.push(item)
+          vm.pagination = response.data.pagination
         })
         vm.isLoading = false
       })

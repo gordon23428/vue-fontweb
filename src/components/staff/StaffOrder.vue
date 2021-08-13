@@ -49,32 +49,37 @@
         </tr>
       </tbody>
     </table>
+    <Pagination :pagination='pagination' @getPage='getOrders'></Pagination>
   </div>
 </template>
 
 <script>
+import Pagination from '@/components/Pagination.vue'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       isLoading: false,
-      orders: []
+      orders: [],
+      pagination: {}
     }
   },
   methods: {
-    getOrders () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders`
+    getOrders (page = 1) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/orders?page=${page}`
       const vm = this
       vm.isLoading = true
       this.$http.get(api).then((response) => {
-        console.log(response.data.orders)
+        console.log(response.data)
         vm.orders = response.data.orders
         vm.isLoading = false
-        // qvm.pagination = response.data.pagination
+        vm.pagination = response.data.pagination
       })
     },
     unix (item) {
       const dateAndTime = new Date(item * 1000).toISOString().split('T')
-      console.log(dateAndTime)
       return dateAndTime
     }
   },
