@@ -1,6 +1,6 @@
 <template>
   <div class="my-5 row justify-content-center">
-    <form class="col-md-6" @submit.prevent="payOrder">
+    <form @submit.prevent="payOrder">
       <table class="table">
         <thead>
           <th>項目</th>
@@ -21,7 +21,6 @@
           </tr>
         </tfoot>
       </table>
-
       <table class="table">
         <tbody>
           <tr>
@@ -63,7 +62,8 @@ export default {
       orderId: '',
       order: {
         user: { }
-      }
+      },
+      coupon_code: ''
     }
   },
   methods: {

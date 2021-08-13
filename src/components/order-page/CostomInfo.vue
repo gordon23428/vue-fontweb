@@ -30,6 +30,14 @@
         <div class="mb-3">
           <ErrorMessage name="address" class="text-danger"/>
         </div>
+        <div class="coupon-area mb-3">
+          <div class="coupon-input mb-3">
+            <span>套用優惠碼:</span>
+          <input type="text" class="mx-3" placeholder="請輸入優惠碼" aria-label="Username" aria-describedby="addon-wrapping" v-model="coupon_code">
+          <button type="button" class="btn btn-primary" @click.prevent="setCoupon" :disabled="!active">確認優惠碼</button>
+          </div>
+          <div v-if="couponMessage" class="coupon-message text-danger">{{couponMessage}}</div>
+        </div>
         <div class="mb-3">
           <label for="Textarea1" class="form-label">留言</label>
           <textarea class="form-control" id="Textarea1" rows="3" v-model="form.message"></textarea>
@@ -58,6 +66,10 @@ export default {
     })
     return {
       schema,
+      popover: '',
+      coupon_code: '',
+      active: true,
+      couponMessage: '',
       form: {
         user: {
           name: '',
@@ -83,6 +95,22 @@ export default {
         }
         vm.isLoading = false
         // vm.getCart()
+      })
+    },
+    setCoupon () {
+      const vm = this
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
+      vm.isLoading = true
+      const coupon = {
+        code: vm.coupon_code
+      }
+      this.$http.post(url, { data: coupon }).then((response) => {
+        if (response.data.success) {
+          vm.active = false
+        }
+        vm.couponMessage = response.data.message
+        vm.isLoading = false
+        console.log(response.data)
       })
     }
   }
