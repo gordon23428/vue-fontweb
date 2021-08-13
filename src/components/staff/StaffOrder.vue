@@ -14,13 +14,31 @@
       <tbody>
         <tr v-for="(item) in orders" :key="item.id">
           <td>
-            {{unix(item.create_at)}}
+            <div>
+              {{unix(item.create_at)[0]}}
+            </div>
+            <div>
+              {{unix(item.create_at)[1]}}
+            </div>
           </td>
           <td>
             {{item.user.email}}
           </td>
           <td>
-            {{item.products}}
+            <li v-for="(thing, index) in item.products" :key="index">
+              <ul>
+                項目:{{thing.product.title}}
+              </ul>
+              <ul>
+                人數:{{thing.product.num}}{{thing.product.unit}}
+              </ul>
+              <ul v-if="thing.coupon">
+                使用優惠卷:{{thing.coupon.title}}
+              </ul>
+              <ul>
+                價錢:{{thing.final_total}}
+              </ul>
+            </li>
           </td>
           <td>
             {{item.total}}
@@ -56,7 +74,8 @@ export default {
     },
     unix (item) {
       const dateAndTime = new Date(item * 1000).toISOString().split('T')
-      return dateAndTime[0]
+      console.log(dateAndTime)
+      return dateAndTime
     }
   },
   mounted () {
