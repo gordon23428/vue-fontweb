@@ -8,7 +8,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="~@/assets/diving.jpg" class="d-block w-100" alt="...">
+          <img src="~@/assets/aviv-perets-eLfDul2Uu8k-unsplash.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h2>馬爾地夫風暴魚</h2>
             <p>置身魚群風暴中</p>
@@ -18,8 +18,8 @@
         <div class="carousel-item">
           <img src="~@/assets/diving2.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h2>沖繩藍洞</h2>
-            <p>悠遊美麗的大海</p>
+            <h2 class="text-dark">沖繩藍洞</h2>
+            <p class="text-dark">悠遊美麗的大海</p>
             <router-link class="btn btn-primary" to="/products">立即詢問</router-link>
           </div>
         </div>
