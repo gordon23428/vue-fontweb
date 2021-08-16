@@ -3,32 +3,3 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@/assets/base.scss";
 @import "~@/assets/main.scss";
-
-
-
-.banner {
-    position: relative;
-    height: 500px;
-    background-image: url('~@/assets/diving.jpg');
-    background-size: cover;
-    background-position: center center;
-  }
-.banner-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 75%;
-  transform: translate(-50%, -50%);
-  color: white;
-}
-.describe {
-  img {
-    height: 30%;
-  }
-}
-.index {
-  text-align:center
-}
-.dropdown-menu {
-  min-width: 25rem
-}

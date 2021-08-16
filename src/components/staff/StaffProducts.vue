@@ -269,6 +269,7 @@ export default {
           vm.tempProduct.imageUrl = response.data.imageUrl
         } else {
           console.log('error')
+          vm.status.fileUploading = false
         }
       })
     }

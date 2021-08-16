@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5">
-    <h1 class="index">
+    <h1 class="index text-center">
       一起來探索海中的奧秘
     </h1>
     <div class="row mb-5">

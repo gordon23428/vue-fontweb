@@ -56,12 +56,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">{{ product.title }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="closeModal">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <img :src="product.image" class="img-fluid" alt="">
+            <img :src="product.imageUrl" class="img-fluid" alt="">
             <blockquote class="blockquote mt-3">
               <p class="mb-0">{{ product.content }}</p>
               <footer class="blockquote-footer text-right">{{ product.description }}</footer>
@@ -118,6 +118,7 @@ export default {
       const vm = this
       vm.isLoading = true
       this.$http.get(api).then((response) => {
+        console.log(response.data)
         vm.products = response.data.products
         vm.filterList = response.data.products
         vm.isLoading = false
@@ -172,6 +173,9 @@ export default {
     getAll () {
       const vm = this
       vm.filterList = vm.products
+    },
+    closeModal () {
+      this.productModal.hide()
     }
   },
   created () {
