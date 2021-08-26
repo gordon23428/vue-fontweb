@@ -21,28 +21,28 @@
     <div class="row col-9 mt-4">
     <!-- product card -->
     <div class="col-md-4 mb-4" v-for="item in filterList" :key="item.id">
-      <div class="card border-0 shadow-sm">
+      <div class="card-product card border-0">
         <div style="height: 150px; background-size: cover; background-position: center"
           :style="{backgroundImage: `url(${item.imageUrl})`}">
         </div>
         <div class="card-body">
           <span class="badge badge-secondary float-right ml-2">{{ item.category }}</span>
-          <h5 class="card-title">
-            <a href="#" class="text-dark">{{ item.title }}</a>
+          <h5 class="card-title text-light">
+            {{ item.title }}
           </h5>
-          <p class="card-text">{{ item.content }}</p>
+          <p class="card-text ">{{ item.content }}</p>
           <div class="d-flex justify-content-between align-items-baseline">
-            <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-            <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
-            <div class="h5" v-if="item.price">現在只要 {{ item.price }} 元</div>
+            <div class="h5 text-light" v-if="!item.price">{{ item.origin_price }} 元</div>
+            <del class="h6 text-light" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+            <div class="h5 text-light" v-if="item.price">現在只要 {{ item.price }} 元</div>
           </div>
         </div>
         <div class="card-footer d-flex">
-          <button type="button" class="btn btn-outline-secondary btn-sm" @click="getProduct(item.id)">
+          <button type="button" class="btn btn-outline-light btn-sm" @click="getProduct(item.id)">
             <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
             查看更多
           </button>
-          <button type="button" class="btn btn-outline-danger btn-sm ml-auto" @click="addToCart(item.id)">
+          <button type="button" class="btn btn-outline-warning btn-sm ml-auto" @click="addToCart(item.id)">
             <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
             加到購物車
           </button>

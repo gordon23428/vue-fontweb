@@ -4,16 +4,14 @@
   overflow: hidden;
 }
 .carousel-item {
-  max-height: 500px;
+  height: 60vh;
   overflow: hidden;
 }
-.introduce {
-  position: absolute;
-  top:35%;
-  left: 20%;
+.list {
+  background: rgba($color: #ffffff, $alpha: 0.5);
 }
 .list:hover {
-  background-color: gray;
+  background-color: rgb(59, 128, 150);
   cursor: pointer;
 }
 .sidebar {
@@ -24,4 +22,51 @@
 }
 .carousel-item, img {
   opacity: 1;
+}
+.index {
+  height: 40vh;
+}
+.card-footer {
+  background-color: #102e3f;
+}
+.card-product {
+  background-color: #454b4d;
+}
+.card-product:hover {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.8);
+}
+.navbar {
+  background-color: #454b4d;
+}
+.img-intro {
+  width: 50vw;
+  background-position: center;
+  background-size: cover;
+}
+.img1 {
+  background-image: url('~@/assets/dsc08057.jpg');
+}
+.img2 {
+  background-image: url('~@/assets/3467cb5ebf6e00779270f09c0.jpeg');
+}
+.img3 {
+  background-image: url('~@/assets/travel-guide-to-longdong-oceanpark.jpg');
+}
+.introduce {
+  width: 50vw;
+  height: 40vh;
+  background:rgba($color: #454b4d, $alpha: 0.5)
+}
+.web-background {
+  z-index: -1;
+  .web-img {
+    height: 100vh;
+    width: 99.1vw;
+    background-image: url('~@/assets/harry-holder-NbPJ8HM-w8c-unsplash.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+}
+.shop-event {
+  background: rgba($color: #2e92b9, $alpha: 0.5);
 }

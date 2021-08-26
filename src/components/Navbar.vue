@@ -1,7 +1,11 @@
 <template>
-  <nav class="navbar navbar-light bg-light flex-nowrap">
+  <nav class="navbar navbar-light flex-nowrap">
     <div class="d-inline">
-      <a class="navbar-brand" href="/login">小林潛水</a>
+      <a class="navbar-brand text-light " href="/login">小林潛水</a>
+      <div class="d-inline">
+      <i class="fas fa-swimmer"></i>
+      <router-link class="text-decoration-none text-light" to="/products">預約潛水</router-link>
+    </div>
     </div>
     <div class="d-flex align-items-center">
       <div class="mx-3">
