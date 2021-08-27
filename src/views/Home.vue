@@ -1,6 +1,7 @@
 <template>
   <div>
     <Navbar/>
+    <Alert/>
     <div class="web-background position-fixed top-0">
       <div class="web-img"></div>
     </div>
@@ -45,11 +46,13 @@
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
+import Alert from '@/components/AlertMessage.vue'
 export default {
   name: 'Home',
   components: {
     Navbar,
-    Footer
+    Footer,
+    Alert
   }
 }
 </script>

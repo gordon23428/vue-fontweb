@@ -92,6 +92,10 @@ export default {
         if (response.data.success) {
           this.$store.commit('setMod', 2)
           vm.$router.push(`/checkout/custom_checkout/${response.data.orderId}`)
+          vm.$store.commit('setMessage', [
+            response.data.message,
+            'success'
+          ])
         }
         vm.isLoading = false
         // vm.getCart()

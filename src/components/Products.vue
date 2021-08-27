@@ -95,11 +95,7 @@
 
 <script>
 import { Modal } from 'bootstrap'
-// import Sidebar from './Sidebar.vue'
 export default {
-  // components: {
-  //   Sidebar
-  // },
   data () {
     return {
       products: [],
@@ -147,6 +143,10 @@ export default {
       }
       this.$http.post(url, { data: cart }).then((response) => {
         console.log(response.data)
+        vm.$store.commit('setMessage', [
+          response.data.message,
+          'success'
+        ])
         vm.status.loadingItem = ''
         this.$store.dispatch('getCart')
         vm.productModal.hide()

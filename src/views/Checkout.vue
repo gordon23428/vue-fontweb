@@ -1,6 +1,7 @@
 <template>
   <div>
     <Navbar/>
+    <Alert/>
     <div class="container">
       <div class="mt-5 text-center">
         <h1>小林潛水 結帳</h1>
@@ -25,11 +26,13 @@
 <script>
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
+import Alert from '@/components/AlertMessage.vue'
 export default {
   name: 'Checkout',
   components: {
     Navbar,
-    Footer
+    Footer,
+    Alert
   },
   computed: {
     mod () {
