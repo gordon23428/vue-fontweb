@@ -1,28 +1,15 @@
 <template>
-  <div class="container mx-auto row mt-5">
-    <loading v-model:active="isLoading"/>
-    <!-- sidebar -->
-    <div class="col-3">
-      <ul class="sidebar list-group">
-          <li class="list list-group-item text-center" @click="getAll">
-            <div class="text-decoration-none text-align-center">全部種類</div>
-          </li>
-          <li class="list list-group-item text-center" @click="getTravel">
-            <div class="text-decoration-none">潛水旅遊</div>
-          </li>
-          <li class="list list-group-item text-center" @click="getTest">
-            <div class="text-decoration-none">潛水考照</div>
-          </li>
-          <li class="list list-group-item text-center" @click="getNovice">
-            <div class="text-decoration-none">體驗潛水</div>
-          </li>
-        </ul>
+  <div>
+    <Navbar/>
+    <Alert/>
+    <div class="web-background position-fixed top-0">
+      <div class="web-img"></div>
     </div>
-    <div class="row col-9 mt-4">
-    <!-- product card -->
-    <div class="col-md-4 mb-4" v-for="item in filterList" :key="item.id">
+    <div class=" container row col-9 mt-4">
+      <!-- product card -->
+      <div class="col-md-4 mb-4" v-for="item in favorProducts" :key="item.id">
       <div class="card-product card border-0 position-relative">
-        <span class="favor-icon position-absolute" @click="addFavorite(item.id)">
+        <span class="position-absolute" data-bs-toggle="modal" data-bs-target="#confirmModal" @click="getId(item.id)" style="font-size: 1.5em; color: pink;">
           <i class="fas fa-heart"></i>
         </span>
         <div style="height: 150px; background-size: cover; background-position: center"
@@ -49,6 +36,24 @@
             <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === item.id"></i>
             加到購物車
           </button>
+        </div>
+      </div>
+    </div>
+    <!-- confirmModal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">移除</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            確定要移除喜愛的旅程嗎?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" @click="removeFavorite" data-bs-dismiss="modal">確定</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          </div>
         </div>
       </div>
     </div>
@@ -92,38 +97,32 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/Navbar.vue'
+import Alert from '@/components/AlertMessage.vue'
 import { Modal } from 'bootstrap'
 export default {
+  components: {
+    Navbar,
+    Alert
+  },
   data () {
     return {
-      products: [],
-      filterList: [],
-      product: {},
+      favorProducts: [],
       isLoading: false,
+      product: {},
       productModal: '',
+      delId: '',
       status: {
         loadingItem: ''
       }
     }
   },
   methods: {
-    getProducts (page = 1) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products?page=${page}`
-      const vm = this
-      vm.isLoading = true
-      this.$http.get(api).then((response) => {
-        console.log(response.data)
-        vm.products = response.data.products
-        vm.filterList = response.data.products
-        vm.isLoading = false
-        // vm.pagination = response.data.pagination
-      })
-    },
     getProduct (id) {
       const vm = this
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
@@ -155,53 +154,19 @@ export default {
         vm.productModal.hide()
       })
     },
-    getTravel () {
+    getId (id) {
       const vm = this
-      const filter = vm.products.filter(item => item.category === 'travel')
-      console.log(filter)
-      vm.filterList = filter
+      vm.getId = id
     },
-    getNovice () {
+    removeFavorite () {
       const vm = this
-      const filter = vm.products.filter(item => item.category === 'novice')
-      console.log(filter)
-      vm.filterList = filter
-    },
-    getTest () {
-      const vm = this
-      const filter = vm.products.filter(item => item.category === 'license-test')
-      console.log(filter)
-      vm.filterList = filter
-    },
-    getAll () {
-      const vm = this
-      vm.filterList = vm.products
-    },
-    closeModal () {
-      this.productModal.hide()
-    },
-    addFavorite (id) {
-      const vm = this
-      const list = JSON.parse(localStorage.getItem('favoriteList')) || []
-      const tour = vm.products.find((item) => item.id === id)
-      if (list.some((item) => item.id === id)) {
-        vm.$store.commit('setMessage', [
-          '此行程已在喜愛的旅程中^^',
-          'danger'
-        ])
-      } else {
-        vm.$store.commit('setMessage', [
-          '您已設定喜愛的旅程',
-          'success'
-        ])
-        list.push(tour)
-        localStorage.setItem('favoriteList', JSON.stringify(list))
-      }
+      const index = vm.favorProducts.findIndex(item => item.id === vm.delId)
+      vm.favorProducts.splice(index, 1)
+      localStorage.setItem('favoriteList', JSON.stringify(vm.favorProducts))
     }
   },
   created () {
-    this.getProducts()
-    this.$store.dispatch('getCart')
+    this.favorProducts = JSON.parse(localStorage.getItem('favoriteList')) || []
   }
 }
 </script>

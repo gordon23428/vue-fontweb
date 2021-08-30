@@ -6,7 +6,8 @@ export default createStore({
     cart: [],
     leng: '',
     orderMod: 1,
-    message: []
+    message: [],
+    favoriteList: []
   },
   mutations: {
     setCart (state, getcart) {
@@ -20,6 +21,9 @@ export default createStore({
     },
     setMessage (state, mes) {
       state.message = mes
+    },
+    setFavorite (state, fav) {
+      state.favoriteList = fav
     }
   },
   actions: {

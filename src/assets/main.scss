@@ -70,3 +70,12 @@
 .shop-event {
   background: rgba($color: #2e92b9, $alpha: 0.5);
 }
+.favor-icon {
+  font-size: 1.5em;
+  color: pink;
+  top: -5px
+}
+.favor-icon:hover {
+  font-size: 2em;
+  color: red;
+}

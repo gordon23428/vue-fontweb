@@ -70,6 +70,11 @@ const routes = [
         component: () => import('../components/order-page/Finish.vue')
       }
     ]
+  },
+  {
+    path: '/favorite',
+    name: 'Favorite',
+    component: () => import('../views/Favorite.vue')
   }
 ]
 const router = createRouter({
