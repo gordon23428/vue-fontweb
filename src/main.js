@@ -7,11 +7,13 @@ import 'bootstrap'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import store from './store'
+import animate from 'animate.css'
 const app = createApp(App)
 app.use(VueAxios, axios)
 app.use(router)
 app.component('Loading', Loading)
 app.use(store)
+app.use(animate)
 app.mount('#app')
 
 router.beforeEach((to, from, next) => {

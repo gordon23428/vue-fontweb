@@ -1,3 +1,4 @@
+$web-color:#454b4d;
 .slider-contaner { 
   width:100%; 
   position:relative; 
@@ -24,19 +25,19 @@
   opacity: 1;
 }
 .index {
-  height: 40vh;
+  height: 10vh;
 }
 .card-footer {
   background-color: #102e3f;
 }
 .card-product {
-  background-color: #454b4d;
+  background-color: $web-color;
 }
 .card-product:hover {
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.8);
 }
 .navbar {
-  background-color: #454b4d;
+  background-color: $web-color;
 }
 .img-intro {
   width: 50vw;
@@ -55,7 +56,7 @@
 .introduce {
   width: 50vw;
   height: 40vh;
-  background:rgba($color: #454b4d, $alpha: 0.5)
+  background:rgba($color: $web-color, $alpha: 0.5)
 }
 .web-background {
   z-index: -1;
@@ -78,4 +79,86 @@
 .favor-icon:hover {
   font-size: 2em;
   color: red;
+}
+.banner {
+  position: relative;
+  background-image: url('~@/assets/diving2.jpg');
+  background-size: cover;
+  background-position: bottom;
+  height: 100vh;
+  .banner-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba($color: #9fa8ac, $alpha: 0.5);
+    padding: 5em;
+    .inner-text:hover {
+      transform: scale(1.2, 1.2);
+    }
+    .inner-text{
+      transition: all 1s ease-out;
+      h1 {
+        white-space:nowrap; 
+      }
+      h3 {
+        text-align: center;
+      }
+      .banner-btn {
+        text-align: center;
+        .fa-angle-double-right {
+          margin-right: 15px;
+          animation-name: slide-r, slide-out-r;
+          animation-duration:2s, 2s;
+          animation-iteration-count: infinite, 1;
+          animation-delay: 2s, 0s;
+        }
+        .fa-angle-double-left {
+          margin-left: 15px;
+          animation-name: slide-l, slide-out-l;
+          animation-duration:2s, 2s;
+          animation-iteration-count: infinite, 1;
+          animation-delay: 2s, 0s;
+        }
+      }
+    }
+  }
+}
+@keyframes slide-r {
+  0% {
+    transform: translateX(0%); 
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%); 
+  }
+}
+@keyframes slide-l {
+  0% {
+    transform: translateX(0%); 
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%); 
+  }
+}
+@keyframes slide-out-r {
+  from {
+    transform: translateX(-500px);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-out-l {
+  from {
+    transform: translateX(500px);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
