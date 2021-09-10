@@ -7,7 +7,8 @@ export default createStore({
     leng: '',
     orderMod: 1,
     message: [],
-    favoriteList: []
+    favoriteList: [],
+    productId: ''
   },
   mutations: {
     setCart (state, getcart) {
