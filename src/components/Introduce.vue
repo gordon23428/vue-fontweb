@@ -6,7 +6,7 @@
         <h3>一起來探索海中的奧秘</h3>
         <div class="banner-btn">
           <i class="fas fa-angle-double-right"></i>
-          <router-link class="btn btn-primary text-light" to="/products">預約潛水</router-link>
+          <router-link class="btn topic-color text-light" to="/products">預約潛水</router-link>
           <i class="fas fa-angle-double-left"></i>
         </div>
       </div>
@@ -44,7 +44,7 @@
       <div class="display-1">慶祝開店</div>
       <div class="mb-3 h3">在結帳頁面輸入優惠碼，享購物9折優惠</div>
       <div class="h3 mb-2">優惠碼:open0726</div>
-      <router-link class="btn btn-primary mb-2" to="/products">立即預約潛水</router-link>
+      <router-link class="btn topic-color mb-2" to="/products">立即預約潛水</router-link>
   </div>
 </template>
 

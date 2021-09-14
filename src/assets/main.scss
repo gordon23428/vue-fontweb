@@ -1,4 +1,10 @@
 $web-color:#454b4d;
+.topic-bg {
+  background-color: $web-color;
+}
+.topic-color {
+  background-color: #0eb1f7;
+}
 .slider-contaner { 
   width:100%; 
   position:relative; 
@@ -57,7 +63,9 @@ $web-color:#454b4d;
 .introduce {
   width: 50vw;
   height: 40vh;
-  background:rgba($color: $web-color, $alpha: 0.5)
+  background:rgba($color: $web-color, $alpha: 0.5);
+  overflow-x:hidden;
+  overflow-y:auto;
 }
 .web-background {
   z-index: -1;
@@ -81,6 +89,39 @@ $web-color:#454b4d;
 .favor-icon:hover {
   font-size: 2em;
   color: red;
+}
+.cart {
+  position: fixed;
+  z-index: 5;
+  bottom: 5em;
+  right: 1em;
+}
+.cart-item {
+  button {
+    float: right;
+  }
+}
+.offcanvas {
+  background-color: $web-color;
+}
+.offcanvas-body {
+padding-bottom: 119px;
+}
+.offcanvas-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 399px;
+  background-color: $web-color;
+  padding: 3px;
+}
+.product {
+  background:rgba($color: #9fa8ac, $alpha: 0.5);
+  .product-img {
+    background-position: center;
+    background-size: cover;
+    height: 50vh;
+  }
 }
 .banner {
   position: relative;

@@ -20,7 +20,7 @@
     </div>
     <div class="row col-9 mt-4">
     <!-- product card -->
-    <div class="col-md-4 mb-4" v-for="item in filterList" :key="item.id">
+    <div class="col-lg-4 col-md-6 col-12 mb-4" v-for="item in filterList" :key="item.id">
       <div class="card-product card border-0 position-relative">
         <span class="favor-icon position-absolute" @click="addFavorite(item.id)">
           <i class="fas fa-heart"></i>
@@ -56,7 +56,7 @@
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content topic-bg text-light">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">{{ product.title }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="closeModal">
@@ -67,7 +67,7 @@
             <img :src="product.imageUrl" class="img-fluid" alt="">
             <blockquote class="blockquote mt-3">
               <p class="mb-0">{{ product.content }}</p>
-              <footer class="blockquote-footer text-right">{{ product.description }}</footer>
+              <footer class="text-right">{{ product.description }}</footer>
             </blockquote>
             <div class="d-flex justify-content-between align-items-baseline">
               <div class="h4" v-if="!product.price">{{ product.origin_price }} 元</div>
@@ -81,10 +81,10 @@
             </select>
           </div>
           <div class="modal-footer">
-            <div class="text-muted text-nowrap mr-3">
+            <div class="text-nowrap mr-3">
               小計 <strong>{{ product.num * product.price }}</strong> 元
             </div>
-            <button type="button" class="btn btn-primary" @click="addToCart(product.id, product.num)">
+            <button type="button" class="btn topic-color" @click="addToCart(product.id, product.num)">
               <i class="fas fa-spinner fa-spin" v-if="status.loadingItem === product.id"></i>
               加到購物車
             </button>
